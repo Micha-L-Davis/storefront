@@ -1,6 +1,8 @@
 import { Box, Typography } from '@mui/material'
+import { connect } from 'react-redux'
 
-export default function ActiveCategory() {
+function ActiveCategory({ activeCategory, categories }) {
+  let { displayName, description } = categories.filter(category => category.name === activeCategory);
   return (
     <Box sx={{
       display: 'flex',
@@ -9,8 +11,17 @@ export default function ActiveCategory() {
       marginBottom: '1%',
       alignItems: 'baseline',
     }}>
-      <Typography variant="h4" sx={{ marginRight: '5%' }}>Category Name</Typography>
-      <Typography variant="caption"> This is an example of a category description</Typography>
+      <Typography variant="h4" sx={{ marginRight: '5%' }}>{`${displayName}`}</Typography>
+      <Typography variant="caption">{`${description}`}</Typography>
     </Box>
   )
 }
+
+const mapStateToProps = ({ activeCategory, categories }) => {
+  return {
+    activeCategory: activeCategory.activeCategory,
+    categories: categories.categories
+  };
+};
+
+export default connect(mapStateToProps)(ActiveCategory);
