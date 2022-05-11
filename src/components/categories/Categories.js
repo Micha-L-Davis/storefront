@@ -1,18 +1,29 @@
 import { Box, Drawer, Typography, Button } from "@mui/material"
 import Category from "./category/Category";
-import { connect } from "react-redux";
-import { slideNavDrawer } from "../../store/navDrawer";
-import { changeCategory } from "../../store/activeCategory";
-import { filterProducts } from "../../store/products";
+import { slideDrawer, changeCategory, filterProducts } from "../../store/actions";
+import { useSelector, useDispatch } from 'react-redux'
 
 const drawerWidth = 180;
 
-function Categories({ categories, isOpen, slideNavDrawer, changeCategory, filterProducts }) {
+function Categories() {
+  let { categories } = useSelector(state => state.categories);
+  let { leftIsOpen } = useSelector(state => state.drawer);
+  let dispatch = useDispatch();
 
   const handleChangeCategory = (categoryName) => {
-    changeCategory(categoryName);
-    filterProducts(categoryName);
+    let categoryAction = changeCategory(categoryName);
+    dispatch(categoryAction);
+
+    let filterAction = filterProducts(categoryName);
+    dispatch(filterAction);
+
+    handleSlideDrawer();
   };
+
+  const handleSlideDrawer = () => {
+    let action = slideDrawer('LEFT');
+    dispatch(action);
+  }
 
   return (
     <Box>
@@ -29,10 +40,12 @@ function Categories({ categories, isOpen, slideNavDrawer, changeCategory, filter
         }}
         variant="persistent"
         anchor="left"
-        open={isOpen}
+        open={leftIsOpen}
       >
-        <Button onClick={slideNavDrawer}>X</Button>
-        <Typography variant="h5" sx={{ margin: '5%' }}>Categories</Typography>
+        <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+          <Typography variant="h5" sx={{ margin: '5%' }}>Categories</Typography>
+          <Button onClick={handleSlideDrawer}>X</Button>
+        </Box>
         {
           categories.map((category, index) => {
             return <Category category={category.displayName} key={`${category.name}+${index}`} changeCategory={() => handleChangeCategory(`${category.name}`)} />
@@ -43,17 +56,4 @@ function Categories({ categories, isOpen, slideNavDrawer, changeCategory, filter
   )
 }
 
-const mapStateToProps = ({ navDrawer, categories }) => {
-  return {
-    isOpen: navDrawer.isOpen,
-    categories: categories.categories
-  }
-}
-
-const mapDispatchToProps = {
-  slideNavDrawer,
-  changeCategory,
-  filterProducts
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Categories);
+export default Categories;
