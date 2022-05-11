@@ -1,10 +1,10 @@
 import { Box } from "@mui/material";
 import Product from './product/Product'
-import ActiveCategory from "../categories/category/ActiveCategory";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
+function Products() {
+  let { products } = useSelector(state => state.products);
 
-function Products({ products }) {
   return (
     <>
       {/* <ActiveCategory /> */}
@@ -23,8 +23,5 @@ function Products({ products }) {
   );
 }
 
-const mapStateToProps = ({ products }) => {
-  return { products: products.products }
-}
 
-export default connect(mapStateToProps)(Products);
+export default Products;
