@@ -48,7 +48,7 @@ function Categories() {
         </Box>
         {
           categories.map((category, index) => {
-            return <Category category={category.displayName} key={`${category.name}+${index}`} changeCategory={() => handleChangeCategory(`${category.name}`)} />
+            return <Category categoryName={category.name} key={`${category._id}-${index}`} changeCategory={() => handleChangeCategory(`${category.name}`)} />
           })
         }
       </Drawer>
