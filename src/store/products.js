@@ -60,14 +60,17 @@ function productsReducer(state = initialState, action) {
       let hideList = productList.filter(product => product.category !== action.payload || product.inventoryCount < 1);
       return { ...state, products: showList, hiddenProducts: hideList };
     case 'VEND':
-      let productToVend = productList.filter(product => product.name === action.payload);
-      productToVend.inventoryCount--;
-      if (productToVend.inventoryCount < 0) productToVend.inventoryCount = 0;
-      return state;
+      let removedInventory = productList.map(product => {
+        if (product.name === action.payload) product.inventory = product.inventory - 1;
+        return product;
+      });
+      return { ...state, products: removedInventory };
     case 'RESTOCK':
-      let productToRestock = productList.filter(product => product.name === action.payload);
-      productToRestock.inventoryCount++;
-      return state;
+      let addedInventory = productList.map(product => {
+        if (product.name === action.payload) product.inventory = product.inventory + 1;
+        return product;
+      });
+      return { ...state, products: addedInventory };
     default:
       return state;
   }
