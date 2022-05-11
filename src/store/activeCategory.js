@@ -11,11 +11,4 @@ function activeCategoryReducer(state = initialState, action) {
   }
 }
 
-export const changeCategory = (category) => {
-  return {
-    type: 'CHANGE_TO',
-    payload: category
-  };
-};
-
 export default activeCategoryReducer;
