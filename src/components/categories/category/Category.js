@@ -9,8 +9,8 @@ export default function Category(props) {
   return (
     <Box sx={{
       marginTop: '5%',
-    }}>
-      <Button variant="text" onClick={handleClick}>{`${props.category}`}</Button>
+    }} key={`${props.categoryName}`}>
+      <Button variant="text" onClick={handleClick}>{`${props.categoryName}`}</Button>
     </Box>
   );
 };

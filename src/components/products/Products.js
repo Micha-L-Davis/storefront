@@ -15,7 +15,7 @@ function Products() {
       }}>
         {
           products.map((product, index) => {
-            return <Product product={product} key={`${product.name}+${index}`} />
+            return <Product product={product} key={`${product._id}-${index}`} />
           })
         }
       </Box>

@@ -1,23 +1,23 @@
+import axios from 'axios';
+import { setCategories } from './actions';
+
 const initialState = {
-  categories: [
-    {
-      name: 'books',
-      displayName: 'Books',
-      description: 'All books are printed on high-quality matte-finish paper and staple bound. Signed copies available on request.',
-    },
-    {
-      name: 'prints',
-      displayName: 'Prints',
-      description: 'Prints are available in 8 x 10 or 16 x 20 on heavy satin finish paper',
-    }
-  ]
+  categories: []
 }
 
 function categoriesReducer(state = initialState, action) {
   switch (action.type) {
+    case 'SET_CATEGORIES':
+      return { ...state, categories: action.payload }
     default:
       return state;
   }
+}
+
+export const getCategories = () => async (dispatch, getState) => {
+  let response = await axios.get('https://api-js401.herokuapp.com/api/v1/categories');
+
+  dispatch(setCategories(response.data.results));
 }
 
 export default categoriesReducer;

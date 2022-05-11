@@ -26,6 +26,20 @@ export const slideDrawer = (side) => {
   }
 }
 
+export const setCategories = (data) => {
+  return {
+    type: 'SET_CATEGORIES',
+    payload: data
+  }
+}
+
+export const setProducts = (data) => {
+  return {
+    type: 'SET_PRODUCTS',
+    payload: data
+  }
+}
+
 export const filterProducts = (category) => {
   return {
     type: 'FILTER',
