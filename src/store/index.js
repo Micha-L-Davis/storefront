@@ -1,16 +1,18 @@
-import { createStore, combineReducers } from 'redux';
+import { legacy_createStore as createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from '@redux-devtools/extension';
 
-import categoriesReducer from './categories';
-import productsReducer from './products';
 import activeCategoryReducer from './activeCategory';
-import navDrawerReducer from './navDrawer'
+import cartContentsReducer from './cartContents'
+import categoriesReducer from './categories';
+import drawerReducer from './drawer'
+import productsReducer from './products';
 
 let reducers = combineReducers({
-  categories: categoriesReducer,
-  products: productsReducer,
   activeCategory: activeCategoryReducer,
-  navDrawer: navDrawerReducer
+  cartContents: cartContentsReducer,
+  categories: categoriesReducer,
+  drawer: drawerReducer,
+  products: productsReducer,
 });
 
 export default function store() {
