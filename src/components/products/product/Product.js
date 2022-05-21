@@ -7,15 +7,17 @@ export default function Product(props) {
   const dispatch = useDispatch();
 
   const handleBuyClick = () => {
-    let addAction = addToCart(props.product);
-    dispatch(addAction);
+    if (props.product.inStock > 0) {
+      let addAction = addToCart(props.product);
+      dispatch(addAction);
 
-    let takeAction = takeFromStock(props.product);
-    dispatch(takeAction);
+      let takeAction = takeFromStock(props.product);
+      dispatch(takeAction);
 
-    let product = { ...props.product }
-    product.inStock = props.product.inStock - 1
-    dispatch(patchProducts(props.product));
+      let product = { ...props.product }
+      product.inStock = props.product.inStock - 1
+      dispatch(patchProducts(props.product));
+    }
   }
 
   return (
