@@ -27,6 +27,7 @@ export default function Product(props) {
       <p>{props.product.name}</p>
       <Button onClick={handleBuyClick}>Buy Now</Button>
       <Button>Details</Button>
+      <p>Qty: {props.product.inStock}</p>
     </Box>
   );
 }
