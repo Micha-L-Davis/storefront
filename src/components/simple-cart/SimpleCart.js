@@ -1,7 +1,7 @@
 import { Box, Drawer, Typography, Button } from "@mui/material"
 import { useSelector, useDispatch } from "react-redux";
 import { slideDrawer, removeFromCart, returnToStock } from "../../store/actions";
-import { patchProducts } from '../../store/products';
+//import { patchProducts } from '../../store/products';
 
 const drawerWidth = 360;
 

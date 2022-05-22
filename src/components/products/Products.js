@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom"
 import ProductDetails from "./product/productDetails";
 import { addToCart, takeFromStock } from "../../store/actions";
-import { patchProducts } from "../../store/products";
+//import { patchProducts } from "../../store/products";
 import { useState } from "react";
 
 
