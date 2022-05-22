@@ -23,9 +23,9 @@ function SimpleCart() {
     let restockAction = returnToStock(product);
     dispatch(restockAction);
 
-    let thisProduct = { ...product };
-    thisProduct.inStock = product.inStock + 1
-    dispatch(patchProducts(thisProduct));
+    // let thisProduct = { ...product };
+    // thisProduct.inStock = product.inStock + 1
+    // dispatch(patchProducts(thisProduct));
   }
 
   return (
