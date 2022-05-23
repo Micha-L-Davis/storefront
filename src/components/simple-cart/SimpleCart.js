@@ -1,6 +1,7 @@
 import { Box, Drawer, Typography, Button } from "@mui/material"
 import { useSelector, useDispatch } from "react-redux";
 import { slideDrawer, removeFromCart, returnToStock } from "../../store/actions";
+import { Link } from 'react-router-dom';
 //import { patchProducts } from '../../store/products';
 
 const drawerWidth = 360;
@@ -45,20 +46,21 @@ function SimpleCart() {
         anchor="right"
         open={rightIsOpen}
       >
-        <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
           <Button onClick={handleSlideDrawer}>X</Button>
-          <Typography variant="h5" sx={{ margin: '5%' }}>Cart</Typography>
+          <Typography variant="h5" sx={{ margin: '5%' }}>Cart Contents</Typography>
         </Box>
         {
           cartContents.map((product, index) => {
             return (
-              <Box sx={{ display: 'flex', flexDirection: 'row' }} key={`${product._id}-${index}`}>
+              <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }} key={`${product._id}-${index}`}>
                 <Typography>{`${product.name}`}</Typography>
                 <Button onClick={() => handleRemoveCartItem(index, product)} key={`button-${index}`} > X</Button>
               </Box>
             )
           })
         }
+        {cartContents.length > 0 && <Link to={`/cart`}><Button onClick={handleSlideDrawer}>Check Out</Button></Link>}
       </Drawer >
     </Box >
   )
