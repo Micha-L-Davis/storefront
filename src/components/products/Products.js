@@ -4,10 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom"
 import ProductDetails from "./product/productDetails";
 import ShoppingCart from "../simple-cart/ShoppingCart";
-import { addToCart, takeFromStock } from "../../store/actions";
+import productsSlice from "../../store/products.slice";
 //import { patchProducts } from "../../store/products";
 import { useState } from "react";
+import cartContentsSlice from "../../store/cartContents.slice";
 
+const { takeFromStock } = productsSlice.actions;
+const { addToCart } = cartContentsSlice.actions;
 
 function Products() {
   let { products } = useSelector(state => state.products);

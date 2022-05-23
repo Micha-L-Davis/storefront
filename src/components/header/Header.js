@@ -1,7 +1,8 @@
 import { Box, Button, Typography } from "@mui/material";
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 import { useSelector, useDispatch } from "react-redux";
-import { slideDrawer } from '../../store/actions'
+import drawerSlice from "../../store/drawer.slice";
+const { slideDrawer } = drawerSlice.actions;
 
 function Header() {
   let { cartContents } = useSelector(state => state.cartContents)
