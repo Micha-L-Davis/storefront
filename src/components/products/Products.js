@@ -3,6 +3,7 @@ import Product from './product/Product'
 import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom"
 import ProductDetails from "./product/productDetails";
+import ShoppingCart from "../simple-cart/ShoppingCart";
 import { addToCart, takeFromStock } from "../../store/actions";
 //import { patchProducts } from "../../store/products";
 import { useState } from "react";
@@ -45,12 +46,11 @@ function Products() {
             })
           }
         </Box>
-      }>
-      </Route>
+      } />
       <Route path={`/products/${detailView._id}`} element={
         <ProductDetails product={detailView} handleBuy={handleBuy} />
-      }>
-      </Route>
+      } />
+      <Route path="/cart" element={<ShoppingCart />} />
     </Routes>
   );
 }
