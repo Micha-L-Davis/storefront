@@ -2,8 +2,9 @@ import { Box, Drawer, Typography, Button } from "@mui/material"
 import Category from "./category/Category";
 import { slideDrawer, changeCategory, filterProducts } from "../../store/actions";
 import { useSelector, useDispatch } from 'react-redux'
+import { Link } from "react-router-dom";
 
-const drawerWidth = 180;
+const drawerWidth = 280;
 
 function Categories() {
   let { categories } = useSelector(state => state.categories);
@@ -42,13 +43,17 @@ function Categories() {
         anchor="left"
         open={leftIsOpen}
       >
-        <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
           <Typography variant="h5" sx={{ margin: '5%' }}>Categories</Typography>
           <Button onClick={handleSlideDrawer}>X</Button>
         </Box>
         {
           categories.map((category, index) => {
-            return <Category categoryName={category.name} key={`${category._id}-${index}`} changeCategory={() => handleChangeCategory(`${category.name}`)} />
+            return (
+              <Link to="/" key={`${category._id}-${index}`}>
+                <Category categoryName={category.name} /*key={`${category._id}-${index}`}*/ changeCategory={() => handleChangeCategory(`${category.name}`)} />
+              </Link>
+            )
           })
         }
       </Drawer>

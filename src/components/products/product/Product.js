@@ -1,23 +1,14 @@
 import { Box, Button } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { addToCart, takeFromStock } from "../../../store/actions";
-import { patchProducts } from "../../../store/products";
+import { Link } from "react-router-dom"
 
 export default function Product(props) {
-  const dispatch = useDispatch();
 
   const handleBuyClick = () => {
-    if (props.product.inStock > 0) {
-      let addAction = addToCart(props.product);
-      dispatch(addAction);
+    props.handleBuy(props.product);
+  }
 
-      let takeAction = takeFromStock(props.product);
-      dispatch(takeAction);
-
-      let product = { ...props.product }
-      product.inStock = props.product.inStock - 1
-      dispatch(patchProducts(props.product));
-    }
+  const handleDetailClick = () => {
+    props.handleDetail(props.product);
   }
 
   return (
@@ -28,7 +19,7 @@ export default function Product(props) {
       <img src="https://via.placeholder.com/200" alt="placeholder"></img>
       <p>{props.product.name}</p>
       <Button onClick={handleBuyClick}>Buy Now</Button>
-      <Button>Details</Button>
+      <Link to={`/products/${props.product._id}`}><Button onClick={handleDetailClick}>Details</Button></Link>
       <p>Qty: {props.product.inStock}</p>
     </Box>
   );
