@@ -1,10 +1,15 @@
 import { Box, Drawer, Typography, Button } from "@mui/material"
 import { useSelector, useDispatch } from "react-redux";
-import { slideDrawer, removeFromCart, returnToStock } from "../../store/actions";
+import drawerSlice from "../../store/drawer.slice";
+import cartContentsSlice from "../../store/cartContents.slice";
+import productsSlice from "../../store/products.slice";
 import { Link } from 'react-router-dom';
 //import { patchProducts } from '../../store/products';
 
 const drawerWidth = 360;
+const { slideDrawer } = drawerSlice.actions;
+const { removeFromCart } = cartContentsSlice.actions;
+const { returnToStock } = productsSlice.actions;
 
 function SimpleCart() {
 

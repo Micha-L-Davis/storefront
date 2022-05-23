@@ -1,10 +1,13 @@
 import { Box, Drawer, Typography, Button } from "@mui/material"
 import Category from "./category/Category";
-import { slideDrawer, changeCategory, filterProducts } from "../../store/actions";
-import { useSelector, useDispatch } from 'react-redux'
+import drawerSlice from "../../store/drawer.slice";
+import productsSlice from "../../store/products.slice";
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
 
 const drawerWidth = 280;
+const { slideDrawer } = drawerSlice.actions;
+const { filterProducts } = productsSlice.actions;
 
 function Categories() {
   let { categories } = useSelector(state => state.categories);
@@ -12,9 +15,6 @@ function Categories() {
   let dispatch = useDispatch();
 
   const handleChangeCategory = (categoryName) => {
-    let categoryAction = changeCategory(categoryName);
-    dispatch(categoryAction);
-
     let filterAction = filterProducts(categoryName);
     dispatch(filterAction);
 
