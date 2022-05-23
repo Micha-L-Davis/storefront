@@ -3,7 +3,7 @@ import Category from "./category/Category";
 import { slideDrawer, changeCategory, filterProducts } from "../../store/actions";
 import { useSelector, useDispatch } from 'react-redux'
 
-const drawerWidth = 180;
+const drawerWidth = 280;
 
 function Categories() {
   let { categories } = useSelector(state => state.categories);
@@ -42,7 +42,7 @@ function Categories() {
         anchor="left"
         open={leftIsOpen}
       >
-        <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
           <Typography variant="h5" sx={{ margin: '5%' }}>Categories</Typography>
           <Button onClick={handleSlideDrawer}>X</Button>
         </Box>
