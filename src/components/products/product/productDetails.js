@@ -12,7 +12,9 @@ export default function ProductDetails(props) {
       <h2>{props.product.name}</h2>
       <Card sx={{
         maxWidth: "300px",
-        margin: "auto"
+        margin: "auto",
+        backgroundColor: '#1a1d24',
+        color: 'white'
       }}>
         <CardMedia
           component="img"
@@ -21,13 +23,13 @@ export default function ProductDetails(props) {
         />
         <CardContent>
           <Typography>
-            {props.product.description}
+            {props.product.category}
           </Typography>
           <Typography>
             Qty: {props.product.inStock}, ${props.product.price}
           </Typography>
         </CardContent>
-        <Link to="/"><Button onClick={handleBuyClick}>Buy</Button></Link>
+        <Link to="/"><Button onClick={handleBuyClick}>Buy</Button><Button>Go Back</Button></Link>
       </Card>
     </>
   );
